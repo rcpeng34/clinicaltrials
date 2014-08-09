@@ -1,1 +1,9 @@
-<p>This is the search view.</p>
+<div class="jumbotron">
+  <h3>Search for Clinical Studies</h3>
+  <h4>results from clinicaltrials.gov</h4>
+  <form>
+    <input type="text" ng-model="searchTerm"/><br>
+  </form>
+  <button ng-click="search()">Search!</button>
+  <p ng-show="searching">Searching for {{searchTerm}}</p>
+</div>
