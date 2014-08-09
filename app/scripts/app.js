@@ -14,6 +14,6 @@ angular
         controller: 'SearchCtrl'
       })
       .otherwise({
-        redirectTo: '/explore'
+        redirectTo: '/search'
       });
   });
