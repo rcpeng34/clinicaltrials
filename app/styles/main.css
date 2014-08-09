@@ -34,3 +34,7 @@ body {
 .container {
   margin-top: 50px;
 }
+
+.navbar-nav {
+  padding-right: 15px;
+}
