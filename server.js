@@ -1,7 +1,8 @@
 "use strict";
 
 var express = require ('express'),
-    http    = require ('http');
+    http    = require ('http'),
+    xml2js  = require ('xml2js').parseString;
 
 var app = express();
 var httpport = process.env.port || 9000;
@@ -34,21 +35,26 @@ app.get('/searchstudies', function(req, res){
     host:'www.clinicaltrial.gov',
     path: '/ct2/results?term=' + searchPath
   }, function(response){
-    var repString = [];
+    var repString = '';
     console.log('success');
     response.setEncoding('utf8');
     response.on('data', function(chunk){
-      repString.push(chunk);
+      repString+=chunk;
     });
     response.on('end', function(){
       console.log('done clinicaltrial.gov request');
-    res.status(200).send(repString);
+      console.log(repString);
+      xml2js(repString, function(err, result){
+        if (err){
+          console.log('error parsing xml ', err);
+        } else {
+          res.status(200).send(JSON.stringify(result));
+        }
+      });
     });
   });
 
   call.on('error', function(e){
     console.log('error', e.message);
-  })
-  // res.status(200).send(searchTerms);
-
-})
+  });
+});
