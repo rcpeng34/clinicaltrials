@@ -21,6 +21,10 @@ var searchController = function($scope, $http){
       })
       .success(function(data){
         console.log('from http', data);
+        // data is an object with data.search_results.clinical_study being an array of studies returned
+        // each object in the array is of form {condition_summary, last_changed, nct_id, order, score, status, title, url}
+        // all fields in the objects are arrays of strings except status
+        // status is an array of objects example: {$:{open: "N"}, _:"Completed"}
       });
     } else {
       console.log('Search bar is empty!');
