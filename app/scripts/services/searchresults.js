@@ -1,7 +1,6 @@
 'use strict';
 
 var searchResults = function($rootScope){
-  console.log('ran factory once');
 
   /*
   trials structure is created when setTrials is called
