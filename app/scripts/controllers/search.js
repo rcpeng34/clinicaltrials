@@ -1,12 +1,11 @@
 'use strict';
 
-var searchController = function($scope, $http, searchResults){
+var searchController = function($scope, $http, $location, searchResults){
   var searchTerms = [];
   $scope.searching = false;
 
   $scope.$on('dataReady', function(){
-    var trials = searchResults.getTrials();
-    console.log(trials);
+    $location.path('/statusChart');
   });
 
   $scope.search = function(){
@@ -39,4 +38,4 @@ var searchController = function($scope, $http, searchResults){
 };
 
 angular.module('clinicaltrialsApp')
-  .controller('SearchCtrl', ['$scope', '$http', 'searchResults', searchController]);
+  .controller('SearchCtrl', ['$scope', '$http', '$location','searchResults', searchController]);

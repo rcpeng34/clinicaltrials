@@ -1,10 +1,8 @@
 'use strict';
 
+var StatuschartController = function($scope, searchResults){
+  console.log(searchResults.getTrials());
+};
+
 angular.module('clinicaltrialsApp')
-  .controller('StatuschartCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('StatuschartCtrl', ['$scope','searchResults', StatuschartController]);
