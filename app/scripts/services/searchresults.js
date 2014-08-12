@@ -31,9 +31,14 @@ var searchResults = function($rootScope){
   // public api
   return {
     getTrials: function(){
-      return trials;
+      if ($.isEmptyObject(trials)){
+        return null;
+      } else {
+        return trials;
+      }
     },
     setTrials: function(inputArray){ // array of trialObj
+      trials = {};
       for (var i=0; i<inputArray.length; i++){
         var status = inputArray[i].status[0]._;
         var conditions = inputArray[i].condition_summary[0].split('; '); // array of strings
