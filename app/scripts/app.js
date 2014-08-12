@@ -13,6 +13,10 @@ angular
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })
+      .when('/statusChart', {
+        templateUrl: 'views/statuschart.html',
+        controller: 'StatuschartCtrl'
+      })
       .otherwise({
         redirectTo: '/search'
       });
