@@ -56,7 +56,6 @@ app.get('/searchstudies', function(req, res){
             if (result.search_results.clinical_study){
               console.log('inside secondary loop');
               for (var k=0; k < result.search_results.clinical_study.length; k++){
-                console.log('pushing');
                 trials.push(result.search_results.clinical_study[k]);
               }
             }
