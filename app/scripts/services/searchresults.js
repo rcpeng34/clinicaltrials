@@ -7,14 +7,20 @@ var searchResults = function($rootScope){
   trials is an object, example:
   trials = {
     status1: {
-      condition1: [trialObj, trialObj, trialObj, ...],
-      condition2: [],
-      ...
+      trialcount: number
+      conditions: {
+        condition1: [trialObj, trialObj, trialObj, ...],
+        condition2: [],
+        ...
+      }
     },
     status2: {
-      condition1: [],
-      condition2: [],
-      ...
+      trialcount: number
+      conditions: {
+        condition1: [trialObj, trialObj, trialObj, ...],
+        condition2: [],
+        ...
+      }
     },
     ...
   }
@@ -33,13 +39,14 @@ var searchResults = function($rootScope){
         var conditions = inputArray[i].condition_summary[0].split('; '); // array of strings
         // check if the status is already in trials, if not, create it
         if (!trials[status]){
-          trials[status] = {};
+          trials[status] = {trialcount: 0, conditions: {}};
         }
+        trials[status].trialcount++;
         for (var j=0; j<conditions.length; j++){
-          if(!trials[status][conditions[j]]){
-            trials[status][conditions[j]] = [];
+          if(!trials[status].conditions[conditions[j]]){
+            trials[status].conditions[conditions[j]] = [];
           }
-          trials[status][conditions[j]].push(inputArray[i]);
+          trials[status].conditions[conditions[j]].push(inputArray[i]);
         }
       }
       console.log('Finished building trial structure');
