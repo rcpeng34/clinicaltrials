@@ -13,7 +13,7 @@ angular
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl'
       })
-      .when('/statusChart', {
+      .when('/chart', {
         templateUrl: 'views/statuschart.html',
         controller: 'StatuschartCtrl'
       })

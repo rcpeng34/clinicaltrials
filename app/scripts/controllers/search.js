@@ -5,7 +5,7 @@ var searchController = function($scope, $http, $location, searchResults){
   $scope.searching = false;
 
   $scope.$on('dataReady', function(){
-    $location.path('/statusChart');
+    $location.path('/chart');
   });
 
   $scope.search = function(){
