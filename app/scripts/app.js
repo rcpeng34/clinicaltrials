@@ -14,8 +14,8 @@ angular
         controller: 'SearchCtrl'
       })
       .when('/chart', {
-        templateUrl: 'views/statuschart.html',
-        controller: 'StatuschartCtrl'
+        templateUrl: 'views/chart.html',
+        controller: 'chartCtrl'
       })
       .otherwise({
         redirectTo: '/search'
