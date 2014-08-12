@@ -1,8 +1,13 @@
 'use strict';
 
-var searchController = function($scope, $http){
+var searchController = function($scope, $http, searchResults){
   var searchTerms = [];
   $scope.searching = false;
+
+  $scope.$on('dataReady', function(){
+    var trials = searchResults.getTrials();
+    console.log(trials);
+  });
 
   $scope.search = function(){
     if ($scope.searchTerm){
@@ -20,11 +25,12 @@ var searchController = function($scope, $http){
         url: searchURL
       })
       .success(function(data){
-        console.log('from http', data);
-        // data is an object with data.search_results.clinical_study being an array of studies returned
+        // data is an array with 5 objects with data[#].search_results.clinical_study being an array of studies returned
         // each object in the array is of form {condition_summary, last_changed, nct_id, order, score, status, title, url}
         // all fields in the objects are arrays of strings except status
         // status is an array of objects example: {$:{open: "N"}, _:"Completed"}
+        console.log('completed call to server');
+        searchResults.setTrials(data);
       });
     } else {
       console.log('Search bar is empty!');
@@ -33,4 +39,4 @@ var searchController = function($scope, $http){
 };
 
 angular.module('clinicaltrialsApp')
-  .controller('SearchCtrl', ['$scope', '$http', searchController]);
+  .controller('SearchCtrl', ['$scope', '$http', 'searchResults', searchController]);
