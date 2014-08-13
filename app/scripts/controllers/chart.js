@@ -15,6 +15,9 @@ var chartController = function($scope, $location, searchResults){
     Highcharts.setOptions({
       title: {
         text: 'source: clinicaltrial.gov'
+      },
+      legend: {
+        enabled: false
       }
     });
 
@@ -32,6 +35,7 @@ var chartController = function($scope, $location, searchResults){
         }
       },
       series: [{
+        name: 'Clinical Trials',
         data: []
       }]
     };
@@ -66,6 +70,7 @@ var chartController = function($scope, $location, searchResults){
           }
         },
         series: [{
+          name: 'Clinical Trials',
           data: []
         }]
       };
