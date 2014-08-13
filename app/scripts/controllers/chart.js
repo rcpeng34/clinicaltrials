@@ -11,6 +11,7 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
     var trials = searchResults.getTrials();
     $scope.tableTrials = [];
     $scope.searchTerm = searchResults.getSearch();
+    $scope.showTable = false;
 // ************************************* set global options for the 2 charts here ************************************* //
     Highcharts.setOptions({
       title: {
@@ -49,6 +50,7 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
         events:{
           click: function(){ //invokes with an jquery event but we don't need it
             // things to clear the trial table if it's not empty
+            $scope.showTable = false;
             $scope.tableTrials = [];
             $scope.selectedCategory = '';
             $scope.selectedStatus = this.category;
@@ -103,6 +105,7 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
                 $scope.tableTrials[i].last_changed[1] = Date.parse($scope.tableTrials[i].last_changed[0]);
               }
               $scope.sort = 'score';
+              $scope.showTable = true;
               $scope.$apply();
               $('.trialTitle').tooltip({placement: 'top'}); // initialize bootstrap opt in for title hovering on each td
             }
