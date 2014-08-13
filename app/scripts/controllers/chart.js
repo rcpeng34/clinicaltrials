@@ -1,6 +1,6 @@
 'use strict';
 
-var chartController = function($scope, $location, searchResults){
+var chartController = function($scope, $location, searchResults, ngTableParams){
   // check if a search has been carried out, else redirect back to search
   console.log('running chartController');
 
@@ -11,7 +11,7 @@ var chartController = function($scope, $location, searchResults){
     var trials = searchResults.getTrials();
     $scope.tableTrials = [];
     $scope.searchTerm = searchResults.getSearch();
-    // set global options for the 2 charts here
+// ************************************* set global options for the 2 charts here ************************************* //
     Highcharts.setOptions({
       title: {
         text: 'source: clinicaltrial.gov'
@@ -20,6 +20,8 @@ var chartController = function($scope, $location, searchResults){
         enabled: false
       }
     });
+
+// ************************************* build StatusChart ************************************* //
 
     $scope.statusChartOptions = {
       chart: {
@@ -60,6 +62,8 @@ var chartController = function($scope, $location, searchResults){
 
     $scope.statusChart = new Highcharts.Chart($scope.statusChartOptions);
 
+// ************************************* build category chart ************************************* //
+
     $scope.buildCategoryChart = function(status){ // status is a string
       $scope.categoryChartOptions = {
         chart: {
@@ -92,11 +96,8 @@ var chartController = function($scope, $location, searchResults){
           events: {
             click: function(){
               $scope.selectedCategory = this.category;
-              // empty the array
-              $scope.tableTrials = [];
-              for (var i=0; i<trials[status].conditions[this.category].length; i++){
-                $scope.tableTrials = $scope.tableTrials.concat(trials[status].conditions[this.category][i]);
-              }
+              // ******************* trial table stuff ******************* //
+              $scope.tableTrials = trials[status].conditions[this.category];
               $scope.$apply();
             }
           }
@@ -105,7 +106,8 @@ var chartController = function($scope, $location, searchResults){
       $scope.categoryChartOptions.chart.height = Math.max(100 + conditions*20, 200);
       $scope.categoryChart = new Highcharts.Chart($scope.categoryChartOptions);
     };
-  }
+
+  } // from else li9
 };
 
 angular.module('clinicaltrialsApp')
