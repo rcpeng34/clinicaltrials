@@ -9,7 +9,8 @@ var chartController = function($scope, $location, searchResults){
   } else {
 
     var trials = searchResults.getTrials();
-    console.log(trials);
+    $scope.tableTrials = [];
+
     // set global options for the 2 charts here
     Highcharts.setOptions({
       title: {
@@ -27,7 +28,7 @@ var chartController = function($scope, $location, searchResults){
       },
       yAxis: {
         title: {
-          text: 'Studies'
+          text: 'Trials'
         }
       },
       series: [{
@@ -35,13 +36,61 @@ var chartController = function($scope, $location, searchResults){
       }]
     };
     // populate categories for x-axis
-    for (status in trials){
+    for (var status in trials){
       $scope.statusChartOptions.xAxis.categories.push(status);
-      $scope.statusChartOptions.series[0].data.push(trials[status].trialcount);
+      $scope.statusChartOptions.series[0].data.push({
+        y: trials[status].trialcount,
+        events:{
+          click: function(){ //invokes with an jquery event but we don't need it
+            console.log(this.category); // the category to use
+            $scope.buildCategoryChart(this.category);
+          }
+        }
+      });
     }
 
     $scope.statusChart = new Highcharts.Chart($scope.statusChartOptions);
-    
+    $scope.buildCategoryChart = function(status){ // status is a string
+      $scope.categoryChartOptions = {
+        chart: {
+          type: 'bar',
+          renderTo: 'categoryChart'
+        },
+        xAxis: {
+          categories: []
+        },
+        yAxis: {
+          title: {
+            text: 'Trials'
+          }
+        },
+        series: [{
+          data: []
+        }]
+      };
+
+      for (var category in trials[status].conditions){
+        console.log(category);
+        $scope.categoryChartOptions.xAxis.categories.push(category);
+        $scope.categoryChartOptions.series[0].data.push({
+          y: trials[status].conditions[category].length,
+          events: {
+            click: function(){
+              // ng-repeat watches on the original array so we can't remove it
+              // empty the array
+              while($scope.tableTrials.length > 0){
+                $scope.tableTrials.pop();
+              }
+              for (var i=0; i<trials[status].conditions[this.category].length; i++){
+                $scope.tableTrials = $scope.tableTrials.concat(trials[status].conditions[this.category][i]);
+              }
+              $scope.$apply();
+            }
+          }
+        });
+      }
+      $scope.categoryChart = new Highcharts.Chart($scope.categoryChartOptions);
+    };
   }
 };
 
