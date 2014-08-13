@@ -8,23 +8,26 @@
 </div>
 <div class="panel panel-success">
   <h3 class="panel-heading">{{selectedStatus}} {{searchTerm}} trials studying {{selectedCategory}}</h3>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>URL</th>
-      <th>Conditions</th>
-      <th>Status</th>
-      <th>Score</th>
-      <th>Last Changed</th>
-    </tr>
-    <tr ng-repeat="trial in tableTrials">
-      <h3>{{trial}}</h3>
-      <td>{{trial.title[0]}}</td>
-      <td>{{trial.url[0]}}</td>
-      <td>{{trial.condition_summary[0]}}</td>
-      <td>{{trial.status[0]._}}</td>
-      <td>{{trial.score[0]}}</td>
-      <td>{{trial.last_changed[0]}}</td>
-    </tr>
+  <table id="trialTable">
+    <thead>
+      <tr>
+        <th><a href"" ng-click="sort='title[0]'; reverse=!reverse">Title</a></th>
+        <th>URL</th>
+        <th>Conditions</th>
+        <th>Status</th>
+        <th><a href"" ng-click="sort='score'; reverse=!reverse">Score</a></th>
+        <th><a href"" ng-click="sort='last_changed[1]'; reverse=!reverse">Last Changed</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="trial in tableTrials | orderBy:sort:reverse">
+        <td>{{trial.title[0]}}</td>
+        <td>{{trial.url[0]}}</td>
+        <td>{{trial.condition_summary[0]}}</td>
+        <td>{{trial.status[0]._}}</td>
+        <td>{{trial.score[0]}}</td>
+        <td>{{trial.last_changed[0]}}</td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -98,6 +98,11 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
               $scope.selectedCategory = this.category;
               // ******************* trial table stuff ******************* //
               $scope.tableTrials = trials[status].conditions[this.category];
+              // go through each and parse the date into a usable number
+              for (var i=0; i<$scope.tableTrials.length; i++){
+                $scope.tableTrials[i].last_changed[1] = Date.parse($scope.tableTrials[i].last_changed[0]);
+              }
+              $scope.sort = 'score';
               $scope.$apply();
             }
           }
