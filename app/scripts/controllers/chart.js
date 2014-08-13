@@ -46,8 +46,10 @@ var chartController = function($scope, $location, searchResults){
         y: trials[status].trialcount,
         events:{
           click: function(){ //invokes with an jquery event but we don't need it
-            console.log(this.category); // the category to use
+            // clear the table of trials if it has anything
+            $scope.tableTrials = [];
             $scope.buildCategoryChart(this.category);
+            $scope.$apply();
           }
         }
       });
@@ -86,11 +88,8 @@ var chartController = function($scope, $location, searchResults){
           y: trials[status].conditions[category].length,
           events: {
             click: function(){
-              // ng-repeat watches on the original array so we can't remove it
               // empty the array
-              while($scope.tableTrials.length > 0){
-                $scope.tableTrials.pop();
-              }
+              $scope.tableTrials = [];
               for (var i=0; i<trials[status].conditions[this.category].length; i++){
                 $scope.tableTrials = $scope.tableTrials.concat(trials[status].conditions[this.category][i]);
               }

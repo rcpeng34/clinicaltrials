@@ -13,4 +13,4 @@ To Do
   8. row separators between table rows
   9. re-layout search bar
   10. add a back to search button
-  11. clear trials table when a status is clicked
+  12. hide table headers when empty
