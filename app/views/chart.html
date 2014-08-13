@@ -1,13 +1,13 @@
 <div class="panel panel-primary">
-  <h3 class="panel-heading">Trials by Status</h3>
+  <h3 class="panel-heading">{{searchTerm}} trials by trial status</h3>
   <div class="highchart" id="statusChart"></div>
 </div>
 <div class="panel panel-info">
-  <h3 class="panel-heading">Trials by Condition</h3>
+  <h3 class="panel-heading">{{selectedStatus}} {{searchTerm}} trials by condition</h3>
   <div class="highchart" id="categoryChart"></div>
 </div>
 <div class="panel panel-success">
-  <h3 class="panel-heading">Trials</h3>
+  <h3 class="panel-heading">{{selectedStatus}} {{searchTerm}} trials studying {{selectedCategory}}</h3>
   <table>
     <tr>
       <th>Title</th>

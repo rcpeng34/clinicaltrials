@@ -10,7 +10,7 @@ var chartController = function($scope, $location, searchResults){
 
     var trials = searchResults.getTrials();
     $scope.tableTrials = [];
-
+    $scope.searchTerm = searchResults.getSearch();
     // set global options for the 2 charts here
     Highcharts.setOptions({
       title: {
@@ -46,10 +46,13 @@ var chartController = function($scope, $location, searchResults){
         y: trials[status].trialcount,
         events:{
           click: function(){ //invokes with an jquery event but we don't need it
-            // clear the table of trials if it has anything
+            // things to clear the trial table if it's not empty
             $scope.tableTrials = [];
-            $scope.buildCategoryChart(this.category);
+            $scope.selectedCategory = '';
+            $scope.selectedStatus = this.category;
             $scope.$apply();
+
+            $scope.buildCategoryChart(this.category);
           }
         }
       });
@@ -88,6 +91,7 @@ var chartController = function($scope, $location, searchResults){
           y: trials[status].conditions[category].length,
           events: {
             click: function(){
+              $scope.selectedCategory = this.category;
               // empty the array
               $scope.tableTrials = [];
               for (var i=0; i<trials[status].conditions[this.category].length; i++){

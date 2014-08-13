@@ -11,6 +11,7 @@ var searchController = function($scope, $http, $location, searchResults){
   $scope.search = function(){
     if ($scope.searchTerm){
       $scope.searching = true;
+      searchResults.setSearch($scope.searchTerm);
       searchTerms = $scope.searchTerm.split(' ');
       var searchURL = '/searchstudies?query=';
       for (var i=0; i<searchTerms.length; i++){

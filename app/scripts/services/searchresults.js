@@ -30,6 +30,8 @@ var searchResults = function($rootScope){
   */
 
   var trials = {};
+  var search = '';
+
   // public api
   return {
     getTrials: function(){
@@ -58,6 +60,12 @@ var searchResults = function($rootScope){
       }
       console.log('Finished building trial structure');
       $rootScope.$broadcast('dataReady');
+    },
+    getSearch: function(){
+      return search;
+    },
+    setSearch: function(str){
+      search = str;
     }
   };
 };
