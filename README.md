@@ -7,7 +7,6 @@ To Do
 
   1. remove series name from charts
   2. add search term to headers
-  3. display every category tag on charts
   4. shorten title and url of table
   5. display trial title on hover
   6. make each row of the table clickable

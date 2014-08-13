@@ -50,11 +50,12 @@ var chartController = function($scope, $location, searchResults){
     }
 
     $scope.statusChart = new Highcharts.Chart($scope.statusChartOptions);
+
     $scope.buildCategoryChart = function(status){ // status is a string
       $scope.categoryChartOptions = {
         chart: {
           type: 'bar',
-          renderTo: 'categoryChart'
+          renderTo: 'categoryChart',
         },
         xAxis: {
           categories: []
@@ -69,7 +70,11 @@ var chartController = function($scope, $location, searchResults){
         }]
       };
 
+      // count how many categories there are and set height = 100 + #conditions*20
+      var conditions = 0;
+
       for (var category in trials[status].conditions){
+        conditions++;
         console.log(category);
         $scope.categoryChartOptions.xAxis.categories.push(category);
         $scope.categoryChartOptions.series[0].data.push({
@@ -89,6 +94,7 @@ var chartController = function($scope, $location, searchResults){
           }
         });
       }
+      $scope.categoryChartOptions.chart.height = Math.max(100 + conditions*20, 200);
       $scope.categoryChart = new Highcharts.Chart($scope.categoryChartOptions);
     };
   }
