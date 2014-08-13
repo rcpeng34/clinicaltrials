@@ -24,7 +24,9 @@ var searchResults = function($rootScope){
     },
     ...
   }
-  trialObj have structure
+  trialObj have keys (all arrays) 
+  condition_summary: [string], last_changed: [string], nct_id: [string], order: [string], 
+  score: [string], title: [string], urlstring: [string], status: [{$:object, _:string}]
   */
 
   var trials = {};
