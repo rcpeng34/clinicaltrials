@@ -8,7 +8,7 @@
 </div>
 <div class="panel panel-success">
   <h3 class="panel-heading">{{selectedStatus}} {{searchTerm}} trials studying {{selectedCategory}}</h3>
-  <table id="trialTable">
+  <table class='table table-striped' id="trialTable">
     <thead>
       <tr>
         <th><a href"" ng-click="sort='title[0]'; reverse=!reverse">Title</a></th>
@@ -21,8 +21,8 @@
     </thead>
     <tbody>
       <tr ng-repeat="trial in tableTrials | orderBy:sort:reverse">
-        <td>{{trial.title[0]}}</td>
-        <td>{{trial.url[0]}}</td>
+        <td><span class="trialTitle" data-toggle="tooltip" title="{{trial.title[0]}}">{{trial.title[0].substr(0, 50) + '...'}}<span></td>
+        <td><a href="{{trial.url[0]}}" target="_blank">{{trial.url[0]}}</a></td>
         <td>{{trial.condition_summary[0]}}</td>
         <td>{{trial.status[0]._}}</td>
         <td>{{trial.score[0]}}</td>

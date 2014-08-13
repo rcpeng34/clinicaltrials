@@ -104,6 +104,7 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
               }
               $scope.sort = 'score';
               $scope.$apply();
+              $('.trialTitle').tooltip({placement: 'top'}); // initialize bootstrap opt in for title hovering on each td
             }
           }
         });
