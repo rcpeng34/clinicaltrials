@@ -1,38 +1,30 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <h3 class="panel-heading">Trials by Status</h3>
-      <div class="highchart" id="statusChart"></div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-info">
-      <h3 class="panel-heading">Trials by Condition</h3>
-      <div class="highchart" id="categoryChart"></div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-success">
-      <h3 class="panel-heading">Trials</h3>
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>URL</th>
-          <th>Conditions</th>
-          <th>Status</th>
-          <th>Score</th>
-          <th>Last Changed</th>
-        </tr>
-        <tr ng-repeat="trial in tableTrials">
-          <h3>{{trial}}</h3>
-          <td>{{trial.title[0]}}</td>
-          <td>{{trial.url[0]}}</td>
-          <td>{{trial.condition_summary[0]}}</td>
-          <td>{{trial.status[0]._}}</td>
-          <td>{{trial.score[0]}}</td>
-          <td>{{trial.last_changed[0]}}</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+<div class="panel panel-primary">
+  <h3 class="panel-heading">Trials by Status</h3>
+  <div class="highchart" id="statusChart"></div>
+</div>
+<div class="panel panel-info">
+  <h3 class="panel-heading">Trials by Condition</h3>
+  <div class="highchart" id="categoryChart"></div>
+</div>
+<div class="panel panel-success">
+  <h3 class="panel-heading">Trials</h3>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Conditions</th>
+      <th>Status</th>
+      <th>Score</th>
+      <th>Last Changed</th>
+    </tr>
+    <tr ng-repeat="trial in tableTrials">
+      <h3>{{trial}}</h3>
+      <td>{{trial.title[0]}}</td>
+      <td>{{trial.url[0]}}</td>
+      <td>{{trial.condition_summary[0]}}</td>
+      <td>{{trial.status[0]._}}</td>
+      <td>{{trial.score[0]}}</td>
+      <td>{{trial.last_changed[0]}}</td>
+    </tr>
+  </table>
 </div>
