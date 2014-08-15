@@ -2,7 +2,6 @@
 
 var chartController = function($scope, $location, searchResults, ngTableParams){
   // check if a search has been carried out, else redirect back to search
-  console.log('running chartController');
 
   if (searchResults.getTrials() === null){
     $location.path('/search');
@@ -91,7 +90,6 @@ var chartController = function($scope, $location, searchResults, ngTableParams){
 
       for (var category in trials[status].conditions){
         conditions++;
-        console.log(category);
         $scope.categoryChartOptions.xAxis.categories.push(category);
         $scope.categoryChartOptions.series[0].data.push({
           y: trials[status].conditions[category].length,
