@@ -19,7 +19,6 @@ var searchController = function($scope, $http, $location, searchResults){
       }
       // searchURL ends in a '+' so remove it
       searchURL = searchURL.substring(0, searchURL.length-1);
-      console.log('searching for ', searchURL);
       $http({
         method: 'GET',
         url: searchURL

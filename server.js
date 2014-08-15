@@ -43,25 +43,20 @@ app.get('/searchstudies', function(req, res){
         repString+=chunk;
       });
       response.on('end', function(){
-        // console.log('done clinicaltrial.gov request');
-        // console.log(repString);
         xml2js(repString, function(err, result){
           if (err){
             console.log('error parsing xml ', err);
           } else {
             // extract clinical studies and add to trials
-            console.log(Object.keys(result));
             called++;
             // some searches might have less than 100 results, check if result has any studies
             if (result.search_results.clinical_study){
-              console.log('inside secondary loop');
               for (var k=0; k < result.search_results.clinical_study.length; k++){
                 trials.push(result.search_results.clinical_study[k]);
               }
             }
             // check if trials has 5 objects, if it does all calls completed
             if (called === 5){
-              console.log(trials);
               res.status(200).send(JSON.stringify(trials));
             }
           }
