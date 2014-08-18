@@ -55,7 +55,7 @@ app.get('/searchstudies', function(req, res){
                 trials.push(result.search_results.clinical_study[k]);
               }
             }
-            // check if trials has 5 objects, if it does all calls completed
+            // check if clinicaltrials.gov has been called 5 times, if it does all calls completed
             if (called === 5){
               res.status(200).send(JSON.stringify(trials));
             }
